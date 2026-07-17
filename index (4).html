@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Stepstones — Break Overwhelming Tasks Into Tiny Steps</title>
+<meta name="description" content="Stepstones turns any overwhelming task into a path of tiny, concrete steps — built for ADHD and executive dysfunction. Try the free live demo, no sign-up required." />
+<meta name="keywords" content="ADHD task app, executive dysfunction, task breakdown, ADHD productivity, tiny steps, task paralysis, getting started on tasks" />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://step-stones.onrender.com/" />
+
+<!-- Open Graph / social preview -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Stepstones — Break Overwhelming Tasks Into Tiny Steps" />
+<meta property="og:description" content="Turn any task you're avoiding into a path of tiny, doable steps. Built for brains that stall on big tasks." />
+<meta property="og:url" content="https://step-stones.onrender.com/" />
+<meta property="og:site_name" content="Stepstones" />
+
+<!-- Twitter card -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Stepstones — Break Overwhelming Tasks Into Tiny Steps" />
+<meta name="twitter:description" content="Turn any task you're avoiding into a path of tiny, doable steps. Built for brains that stall on big tasks." />
+
+<!-- Structured data so Google understands what this page is -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Stepstones",
+  "applicationCategory": "ProductivityApplication",
+  "description": "Stepstones turns overwhelming tasks into a path of tiny, concrete steps, built for ADHD and executive dysfunction.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<!-- Google AdSense: once your site is approved, uncomment this line and
+     replace ca-pub-XXXXXXXXXXXXXXXX below and in both ad slots with your
+     real publisher ID from adsense.google.com -->
+<!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
+</head>
+<body>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Public+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap');
+
+  #ss-site {
+    --paper: #EEF1E6;
+    --surface: #FFFFFF;
+    --surface-warm: #F7F5EC;
+    --ink: #232620;
+    --ink-soft: #676B5E;
+    --ink-faint: #9BA08D;
+    --violet: #6E5DE7;
+    --violet-deep: #241C4A;
+    --violet-soft: #ECE9FB;
+    --amber: #E8973B;
+    --amber-soft: #FBEEDC;
+    --green: #4FB77E;
+    --green-soft: #E6F5EC;
+    --line: #D9DCC8;
+
+    --font-display: 'Bricolage Grotesque', sans-serif;
+    --font-body: 'Public Sans', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    line-height: 1.5;
+    overflow-x: hidden;
+    position: relative;
+  }
+  #ss-site * { box-sizing: border-box; }
+  #ss-site img, #ss-site svg { display: block; max-width: 100%; }
+  #ss-site a { color: inherit; }
+
+  #ss-site .wrap { max-width: 960px; margin: 0 auto; padding: 0 28px; }
+
+  /* ---------- Nav ---------- */
+  #ss-site .nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 26px 28px;
+    position: relative; z-index: 5;
+  }
+  #ss-site .nav-brand { display: flex; align-items: center; gap: 9px; font-family: var(--font-display); font-weight: 700; font-size: 19px; }
+  #ss-site .nav-links { display: flex; gap: 28px; font-size: 14px; font-weight: 600; color: var(--ink-soft); }
+  #ss-site .nav-links a { text-decoration: none; }
+  #ss-site .nav-links a:hover { color: var(--violet); }
+  @media (max-width: 640px) { #ss-site .nav-links { display: none; } }
+
+  /* ---------- Trail (signature background element) ---------- */
+  #ss-site .trail-svg {
+    position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: 100%; max-width: 960px; height: 100%;
+    z-index: 0; pointer-events: none;
+  }
+  #ss-site .trail-path {
+    fill: none; stroke: var(--line); stroke-width: 3; stroke-dasharray: 1 14; stroke-linecap: round;
+  }
+
+  /* ---------- Hero ---------- */
+  #ss-site .hero { padding: 40px 0 10px; text-align: center; position: relative; }
+  #ss-site .eyebrow {
+    display: inline-block; font-family: var(--font-mono); font-size: 12.5px; font-weight: 500;
+    color: var(--violet); text-transform: uppercase; letter-spacing: 1.4px;
+    background: var(--violet-soft); padding: 6px 14px; border-radius: 20px; margin-bottom: 22px;
+  }
+  #ss-site h1.hero-h1 {
+    font-family: var(--font-display); font-weight: 700; font-size: clamp(34px, 6vw, 58px);
+    line-height: 1.08; margin: 0 0 20px; letter-spacing: -0.5px;
+  }
+  #ss-site h1.hero-h1 em { font-style: italic; color: var(--violet); }
+  #ss-site .hero-sub {
+    font-size: 17px; color: var(--ink-soft); max-width: 480px; margin: 0 auto 44px; line-height: 1.6;
+  }
+
+  /* ---------- Demo card ---------- */
+  #ss-site .demo-card {
+    background: var(--surface); border-radius: 26px; padding: 30px;
+    max-width: 560px; margin: 0 auto 90px; text-align: left;
+    box-shadow: 0 24px 60px -30px rgba(36,28,74,0.28);
+    border: 1px solid var(--line);
+    position: relative; z-index: 2;
+  }
+  #ss-site .demo-label { font-family: var(--font-mono); font-size: 11.5px; font-weight: 600; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+  #ss-site textarea.demo-input {
+    width: 100%; min-height: 78px; border-radius: 16px; border: 2px solid var(--line);
+    padding: 14px 16px; font-family: var(--font-body); font-size: 15.5px; resize: none;
+    background: var(--surface-warm); color: var(--ink);
+  }
+  #ss-site textarea.demo-input:focus { outline: none; border-color: var(--violet); }
+  #ss-site textarea.demo-input::placeholder { color: var(--ink-faint); }
+  #ss-site .demo-photo-row { margin-top: 10px; }
+  #ss-site .demo-photo-btn {
+    display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700;
+    color: var(--violet); background: var(--violet-soft); padding: 8px 14px; border-radius: 20px;
+    cursor: pointer; border: none;
+  }
+  #ss-site .demo-photo-btn:hover { opacity: 0.85; }
+  #ss-site .demo-photo-preview { margin-top: 12px; display: flex; align-items: center; gap: 12px; }
+  #ss-site .demo-photo-preview img {
+    width: 64px; height: 64px; object-fit: cover; border-radius: 10px; border: 1px solid var(--line);
+  }
+  #ss-site .demo-photo-remove {
+    background: none; border: none; color: var(--ink-faint); font-size: 12.5px; font-weight: 600; cursor: pointer;
+  }
+  #ss-site .demo-photo-remove:hover { color: var(--ink); }
+  #ss-site .demo-btn {
+    margin-top: 14px; width: 100%; background: var(--violet); color: white; border: none;
+    font-family: var(--font-body); font-weight: 800; font-size: 15px; padding: 15px 20px;
+    border-radius: 14px; cursor: pointer; transition: transform 0.12s ease, opacity 0.12s ease;
+  }
+  #ss-site .demo-btn:active { transform: scale(0.98); }
+  #ss-site .demo-btn:disabled { opacity: 0.55; cursor: not-allowed; }
+  #ss-site .demo-note { font-size: 12.5px; color: var(--ink-faint); margin-top: 12px; text-align: center; }
+
+  #ss-site .demo-loading { display: none; text-align: center; padding: 30px 10px 6px; }
+  #ss-site .demo-loading.active { display: block; }
+  #ss-site .demo-dot {
+    width: 44px; height: 44px; border-radius: 50%; background: var(--violet-soft); margin: 0 auto 14px;
+    display: flex; align-items: center; justify-content: center; font-size: 21px;
+    animation: ssPulse 1.3s ease-in-out infinite;
+  }
+  @keyframes ssPulse { 0%,100% { transform: scale(1);} 50% { transform: scale(1.1);} }
+  #ss-site .demo-loading-text { font-weight: 700; font-size: 13.5px; color: var(--ink-soft); }
+
+  #ss-site .demo-result { display: none; margin-top: 26px; }
+  #ss-site .demo-result.active { display: block; animation: ssFadeIn 0.4s ease; }
+  @keyframes ssFadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  #ss-site .demo-result-task { font-family: var(--font-display); font-weight: 700; font-size: 17px; margin-bottom: 16px; }
+  #ss-site .demo-stone-row { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 4px; }
+  #ss-site .demo-stone-col { display: flex; flex-direction: column; align-items: center; width: 28px; flex-shrink: 0; }
+  #ss-site .demo-stone {
+    width: 28px; height: 28px; border-radius: 50%; background: var(--violet-soft); color: var(--violet);
+    display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; flex-shrink: 0;
+  }
+  #ss-site .demo-connector { width: 2px; flex: 1; min-height: 18px; background: var(--line); }
+  #ss-site .demo-stone-card {
+    flex: 1; background: var(--surface-warm); border-radius: 12px; padding: 11px 13px; margin-bottom: 12px;
+    display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 14px;
+  }
+  #ss-site .demo-stone-title { font-weight: 700; }
+  #ss-site .demo-stone-time { font-family: var(--font-mono); font-size: 11.5px; color: var(--ink-faint); white-space: nowrap; }
+  #ss-site .demo-error {
+    background: var(--amber-soft); color: #8a5a10; border-radius: 12px; padding: 11px 14px;
+    font-size: 13.5px; font-weight: 600; margin-top: 16px;
+  }
+
+  /* ---------- How it works ---------- */
+  #ss-site .section { padding: 90px 0; position: relative; }
+  #ss-site .section-head { text-align: center; margin-bottom: 56px; }
+  #ss-site .section-eyebrow {
+    font-family: var(--font-mono); font-size: 12px; font-weight: 600; color: var(--ink-faint);
+    text-transform: uppercase; letter-spacing: 1.4px; margin-bottom: 12px;
+  }
+  #ss-site h2.section-h2 {
+    font-family: var(--font-display); font-weight: 700; font-size: clamp(26px, 4vw, 36px); margin: 0; letter-spacing: -0.3px;
+  }
+
+  #ss-site .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  @media (max-width: 720px) { #ss-site .steps-grid { grid-template-columns: 1fr; } }
+  #ss-site .step-card {
+    background: var(--surface); border-radius: 20px; padding: 28px 24px; border: 1px solid var(--line);
+    position: relative;
+  }
+  #ss-site .step-num {
+    font-family: var(--font-mono); font-size: 13px; font-weight: 600; color: var(--violet);
+    background: var(--violet-soft); width: 30px; height: 30px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; margin-bottom: 18px;
+  }
+  #ss-site .step-title { font-family: var(--font-display); font-weight: 700; font-size: 18px; margin-bottom: 8px; }
+  #ss-site .step-copy { font-size: 14.5px; color: var(--ink-soft); line-height: 1.55; }
+
+  /* ---------- Why it works ---------- */
+  #ss-site .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+  @media (max-width: 720px) { #ss-site .why-grid { grid-template-columns: 1fr; } }
+  #ss-site .why-copy p { font-size: 15.5px; color: var(--ink-soft); line-height: 1.7; margin: 0 0 18px; }
+  #ss-site .why-copy strong { color: var(--ink); }
+  #ss-site .why-visual {
+    background: var(--surface-warm); border-radius: 22px; padding: 28px; border: 1px solid var(--line);
+  }
+  #ss-site .why-row { display: flex; align-items: center; gap: 12px; padding: 11px 0; font-size: 14px; }
+  #ss-site .why-row:not(:last-child) { border-bottom: 1px dashed var(--line); }
+  #ss-site .why-tag {
+    font-family: var(--font-mono); font-size: 10.5px; font-weight: 600; padding: 3px 9px; border-radius: 10px;
+    text-transform: uppercase; letter-spacing: 0.4px; flex-shrink: 0;
+  }
+  #ss-site .why-tag.big { background: var(--amber-soft); color: #8a5a10; }
+  #ss-site .why-tag.small { background: var(--green-soft); color: #2c7a53; }
+  #ss-site .why-row-text { color: var(--ink-soft); }
+  #ss-site .why-row-text strong { color: var(--ink); font-weight: 700; }
+
+  /* ---------- Sprout band ---------- */
+  #ss-site .sprout-band { background: var(--violet-deep); color: white; border-radius: 32px; margin: 0 28px; padding: 64px 40px; position: relative; overflow: hidden; }
+  @media (max-width: 640px) { #ss-site .sprout-band { padding: 48px 24px; margin: 0 14px; } }
+  #ss-site .sprout-inner { max-width: 640px; margin: 0 auto; text-align: center; position: relative; z-index: 2; }
+  #ss-site .sprout-icon { width: 52px; height: 52px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; font-size: 24px; margin: 0 auto 22px; }
+  #ss-site .sprout-band h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(24px, 3.6vw, 32px); margin: 0 0 14px; }
+  #ss-site .sprout-band > .sprout-inner > p { color: rgba(255,255,255,0.72); font-size: 15.5px; max-width: 440px; margin: 0 auto 36px; line-height: 1.6; }
+  #ss-site .sprout-bubbles { display: flex; flex-direction: column; gap: 10px; max-width: 380px; margin: 0 auto; text-align: left; }
+  #ss-site .sprout-bubble {
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 14px; padding: 12px 16px; font-size: 13.5px; color: rgba(255,255,255,0.9);
+  }
+  #ss-site .sprout-chat { max-width: 420px; margin: 0 auto; text-align: left; }
+  #ss-site .sprout-chat-messages {
+    max-height: 280px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px;
+    margin-bottom: 14px; padding-right: 4px;
+  }
+  #ss-site .sprout-chat-messages .sprout-bubble { max-width: 82%; }
+  #ss-site .sprout-chat-messages .sprout-bubble.bot { align-self: flex-start; }
+  #ss-site .sprout-chat-messages .sprout-bubble.user {
+    align-self: flex-end; background: rgba(255,255,255,0.92); color: var(--violet-deep);
+    border: none; font-weight: 600;
+  }
+  #ss-site .sprout-chat-messages .sprout-bubble.typing { opacity: 0.6; font-style: italic; }
+  #ss-site .sprout-chat-inputrow { display: flex; gap: 8px; }
+  #ss-site .sprout-chat-input {
+    flex: 1; border-radius: 12px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.08);
+    color: white; padding: 11px 14px; font-family: var(--font-body); font-size: 14px;
+  }
+  #ss-site .sprout-chat-input::placeholder { color: rgba(255,255,255,0.5); }
+  #ss-site .sprout-chat-input:focus { outline: none; border-color: rgba(255,255,255,0.5); }
+  #ss-site .sprout-chat-send {
+    background: white; color: var(--violet-deep); border: none; border-radius: 12px;
+    padding: 11px 18px; font-weight: 800; font-size: 13.5px; cursor: pointer; font-family: var(--font-body);
+  }
+  #ss-site .sprout-chat-send:disabled { opacity: 0.5; cursor: not-allowed; }
+  #ss-site .sprout-chat #ss-chat-error .demo-error { background: rgba(232,151,59,0.18); color: #ffd9a8; margin-top: 10px; }
+
+  /* ---------- Footer CTA ---------- */
+  #ss-site .ad-slot {
+    max-width: 728px; margin: 0 auto; padding: 0 28px;
+    display: flex; align-items: center; justify-content: center;
+    min-height: 90px;
+  }
+  #ss-site .ad-slot-label {
+    font-family: var(--font-mono); font-size: 10px; color: var(--ink-faint);
+    text-transform: uppercase; letter-spacing: 1px; text-align: center; margin-bottom: 6px;
+  }
+  #ss-site .cta-section { text-align: center; padding: 100px 0 70px; }
+  #ss-site .cta-section h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(26px, 4vw, 38px); margin: 0 0 26px; }
+  #ss-site .cta-btn {
+    display: inline-block; background: var(--violet); color: white; text-decoration: none;
+    font-weight: 800; font-size: 15px; padding: 16px 30px; border-radius: 14px; cursor: pointer; border: none;
+    font-family: var(--font-body);
+  }
+  #ss-site footer { text-align: center; padding: 30px 28px 50px; font-size: 12.5px; color: var(--ink-faint); }
+
+  @media (prefers-reduced-motion: reduce) {
+    #ss-site .demo-dot { animation: none !important; }
+    #ss-site .demo-result.active { animation: none !important; }
+  }
+</style>
+
+<div id="ss-site">
+  <svg class="trail-svg" viewBox="0 0 960 2400" preserveAspectRatio="none">
+    <path class="trail-path" d="M 480 100 Q 200 300 480 500 T 480 900 Q 750 1100 480 1300 T 480 1700 Q 250 1900 480 2100"/>
+  </svg>
+
+  <nav class="nav">
+    <div class="nav-brand">
+      <svg width="26" height="26" viewBox="0 0 100 100">
+        <circle cx="20" cy="80" r="14" fill="#DCD6F7"/>
+        <circle cx="48" cy="62" r="16" fill="#9C8CEE"/>
+        <circle cx="76" cy="42" r="19" fill="#6E5DE7"/>
+        <line x1="76" y1="23" x2="76" y2="10" stroke="#4FB77E" stroke-width="3.2" stroke-linecap="round"/>
+        <ellipse cx="68" cy="12" rx="8" ry="4" fill="#4FB77E" transform="rotate(-35 68 12)"/>
+        <ellipse cx="84" cy="12" rx="8" ry="4" fill="#4FB77E" transform="rotate(35 84 12)"/>
+      </svg>
+      Stepstones
+    </div>
+    <div class="nav-links">
+      <a href="#how">How it works</a>
+      <a href="#why">Why it works</a>
+      <a href="#sprout">Sprout</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero wrap">
+    <div class="eyebrow">for brains that stall</div>
+    <h1 class="hero-h1">Big tasks feel impossible.<br/><em>Tiny steps</em> don't.</h1>
+    <p class="hero-sub">Tell Stepstones what you're avoiding. It turns it into a path of steps small enough to actually start — try it below, right now.</p>
+
+    <div class="demo-card">
+      <div class="demo-label">Try it — describe something you're avoiding</div>
+      <textarea class="demo-input" id="ss-demo-input" placeholder="e.g. clean my room, reply to that email I've been avoiding, start my assignment..."></textarea>
+      <div class="demo-photo-row" id="ss-demo-photo-row">
+        <label class="demo-photo-btn" for="ss-demo-photo-input">
+          📷 Or add a photo of the mess
+        </label>
+        <input type="file" accept="image/*" id="ss-demo-photo-input" style="display:none;" onchange="ssHandlePhoto(event)" />
+      </div>
+      <div class="demo-photo-preview" id="ss-demo-photo-preview" style="display:none;">
+        <img id="ss-demo-photo-img" alt="Uploaded photo preview" />
+        <button type="button" class="demo-photo-remove" onclick="ssRemovePhoto()">✕ Remove photo</button>
+      </div>
+      <button class="demo-btn" id="ss-demo-btn" onclick="ssRunDemo()">Break it down</button>
+      <div class="demo-note">No sign-up. Nothing saved. Just steps.</div>
+
+      <div class="demo-loading" id="ss-demo-loading">
+        <div class="demo-dot">🌱</div>
+        <div class="demo-loading-text" id="ss-demo-loading-text">Finding the tiny steps...</div>
+      </div>
+
+      <div class="demo-result" id="ss-demo-result">
+        <div class="demo-result-task" id="ss-demo-task"></div>
+        <div id="ss-demo-stones"></div>
+      </div>
+      <div id="ss-demo-error"></div>
+    </div>
+  </section>
+
+  <!-- AD SLOT 1 -->
+  <div class="ad-slot">
+    <ins class="adsbygoogle"
+      style="display:block; width:100%; max-width:728px; min-height:90px;"
+      data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+      data-ad-slot="XXXXXXXXXX"
+      data-ad-format="auto"
+      data-full-width-responsive="true"></ins>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <section class="section wrap" id="how">
+    <div class="section-head">
+      <div class="section-eyebrow">the path</div>
+      <h2 class="section-h2">Three stones, not a to-do list</h2>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <div class="step-title">Say what you're avoiding</div>
+        <div class="step-copy">Type it in a sentence, or show a photo of the mess. You don't need to know where to start — that's the part Stepstones handles.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <div class="step-title">Get a path, not a list</div>
+        <div class="step-copy">Every stone is a single physical action, small enough to finish in a few minutes, ordered to build momentum instead of dread.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <div class="step-title">Walk it one stone at a time</div>
+        <div class="step-copy">A gentle timer keeps you moving. Skip a stone, add a minute, or stop halfway — however far you get still counts.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY IT WORKS -->
+  <section class="section wrap" id="why">
+    <div class="section-head">
+      <div class="section-eyebrow">why tiny works</div>
+      <h2 class="section-h2">Big tasks hide the first move</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-copy">
+        <p>Executive dysfunction rarely means a task is too <em>hard</em>. It usually means the first move is invisible — buried under everything the task quietly implies.</p>
+        <p><strong>"Clean the kitchen"</strong> hides a dozen unspoken decisions: what counts as clean, where to start, how long it'll take. <strong>"Put three dishes in the sink"</strong> hides none of that. It's just a thing your hands can do right now.</p>
+        <p>Stepstones does the hiding-work for you — finding the smallest physical action available, and handing you just that. Nothing else, until you're ready for the next stone.</p>
+      </div>
+      <div class="why-visual">
+        <div class="why-row">
+          <span class="why-tag big">vague</span>
+          <span class="why-row-text">"<strong>Clean my room</strong>" — no clear first move, easy to stall on</span>
+        </div>
+        <div class="why-row">
+          <span class="why-tag small">tiny</span>
+          <span class="why-row-text">"<strong>Pick up 5 things off the floor</strong>" — done in under 3 minutes</span>
+        </div>
+        <div class="why-row">
+          <span class="why-tag big">vague</span>
+          <span class="why-row-text">"<strong>Reply to that email</strong>" — feels bigger the longer it waits</span>
+        </div>
+        <div class="why-row">
+          <span class="why-tag small">tiny</span>
+          <span class="why-row-text">"<strong>Open it and read just the subject line</strong>" — no pressure to finish</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPROUT -->
+  <section class="wrap" id="sprout" style="padding: 20px 0 90px;">
+    <div class="sprout-band">
+      <div class="sprout-inner">
+        <div class="sprout-icon">🌱</div>
+        <h2>For when you're stuck mid-path</h2>
+        <p>Sprout is a small companion that lives inside every path — not a therapist, not a hype machine. Just a nudge when you stall out. Try it below.</p>
+        <div class="sprout-chat">
+          <div class="sprout-chat-messages" id="ss-chat-messages">
+            <div class="sprout-bubble bot">Hey — I'm Sprout. What are you stuck on right now?</div>
+          </div>
+          <div class="sprout-chat-inputrow">
+            <input type="text" id="ss-chat-input" class="sprout-chat-input" placeholder="Tell Sprout what's going on..." />
+            <button class="sprout-chat-send" id="ss-chat-send" onclick="ssSendChat()">Send</button>
+          </div>
+          <div id="ss-chat-error"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section wrap">
+    <h2>Ready to move?</h2>
+    <button class="cta-btn" onclick="document.querySelector('#ss-demo-input').scrollIntoView({behavior:'smooth', block:'center'}); document.querySelector('#ss-demo-input').focus();">Start your first path</button>
+  </section>
+
+  </section>
+
+  <!-- AD SLOT 2 -->
+  <div class="ad-slot">
+    <ins class="adsbygoogle"
+      style="display:block; width:100%; max-width:728px; min-height:90px;"
+      data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+      data-ad-slot="XXXXXXXXXX"
+      data-ad-format="auto"
+      data-full-width-responsive="true"></ins>
+  </div>
+
+  <footer>Stepstones — a path for brains that stall.</footer>
+</div>
+
+<script>
+(function(){
+  function $(id){ return document.getElementById(id); }
+  function escapeHtml(str){
+    const d = document.createElement('div');
+    d.textContent = str;
+    return d.innerHTML;
+  }
+
+  function fallbackSteps(task){
+    return [
+      { title: `Set a timer for 2 minutes and just look at "${task}"`, minutes: 2, emoji: '👀' },
+      { title: 'Pick up or touch just one small piece of it', minutes: 3, emoji: '🖐️' },
+      { title: 'Do one small piece, ignore the rest for now', minutes: 4, emoji: '🧩' },
+      { title: 'Take a 1 minute breather', minutes: 1, emoji: '💨' },
+      { title: 'Do one more small piece', minutes: 4, emoji: '🔁' }
+    ];
+  }
+
+  function renderStones(steps){
+    const wrap = $('ss-demo-stones');
+    wrap.innerHTML = steps.map((s, i) => {
+      const isLast = i === steps.length - 1;
+      return `
+        <div class="demo-stone-row">
+          <div class="demo-stone-col">
+            <div class="demo-stone">${i+1}</div>
+            ${!isLast ? '<div class="demo-connector"></div>' : ''}
+          </div>
+          <div class="demo-stone-card">
+            <div>${s.emoji || '✅'} ${escapeHtml(s.title)}</div>
+            <div class="demo-stone-time">${s.minutes} min</div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  let ssPhotoData = null; // { base64, mediaType }
+
+  window.ssHandlePhoto = function(event){
+    const file = event.target.files[0];
+    if(!file) return;
+    if(file.size > 5 * 1024 * 1024){
+      $('ss-demo-error').innerHTML = '<div class="demo-error">That photo is a bit too large — try one under 5MB.</div>';
+      event.target.value = '';
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = function(e){
+      const result = e.target.result; // data:image/png;base64,xxxx
+      const match = result.match(/^data:(image\/[a-zA-Z+]+);base64,(.*)$/);
+      if(!match) return;
+      ssPhotoData = { mediaType: match[1], base64: match[2] };
+      $('ss-demo-photo-img').src = result;
+      $('ss-demo-photo-preview').style.display = 'flex';
+      $('ss-demo-photo-row').style.display = 'none';
+    };
+    reader.readAsDataURL(file);
+  };
+
+  window.ssRemovePhoto = function(){
+    ssPhotoData = null;
+    $('ss-demo-photo-input').value = '';
+    $('ss-demo-photo-preview').style.display = 'none';
+    $('ss-demo-photo-row').style.display = 'block';
+  };
+
+  window.ssRunDemo = async function(){
+    const input = $('ss-demo-input');
+    const task = input.value.trim();
+    const errBox = $('ss-demo-error');
+    errBox.innerHTML = '';
+    if(!task && !ssPhotoData){
+      errBox.innerHTML = '<div class="demo-error">Type what you\'re avoiding, or add a photo — even one word is enough.</div>';
+      return;
+    }
+
+    const btn = $('ss-demo-btn');
+    btn.disabled = true;
+    $('ss-demo-result').classList.remove('active');
+    $('ss-demo-loading').classList.add('active');
+
+    const loadingMsgs = ['Finding the tiny steps...', 'Making this smaller...', 'Almost there...'];
+    let mi = 0;
+    const cycle = setInterval(() => { mi = (mi+1) % loadingMsgs.length; $('ss-demo-loading-text').textContent = loadingMsgs[mi]; }, 1300);
+
+    const systemInstruction = `You help people with ADHD and executive dysfunction break down a specific overwhelming task into tiny, extremely concrete physical steps. You may be given a photo instead of, or alongside, text — look closely and reference what's actually visible.
+
+Critical rule: NEVER write generic filler steps like "look at it for 2 minutes" or "take a breather" — every step must reference something specific and real from the actual task described or shown, not a placeholder that could apply to any task.
+
+Good vs bad examples:
+- Task "reply to that email I've been avoiding" → BAD: "Open your inbox" (too vague, no specificity). GOOD: "Open the email and reread just the first line" (concrete, specific action tied to the real object).
+- Task "clean my room" → BAD: "Start cleaning" (empty). GOOD: "Pick up every piece of clothing on the floor near your bed" (specific location, specific item, bounded scope).
+- Photo of a messy desk → BAD: "Tidy the desk" (ignores what's visible). GOOD: "Stack the loose papers on the left side into one pile" (references what's actually in the photo).
+
+Rules:
+- Produce 5 steps, ordered from smallest/easiest first to build momentum.
+- Each step: 1 to 5 minutes for an average person.
+- Every step must name a specific, real, bounded action — no vague verbs like "start," "begin," "look at," "think about" used alone.
+- Titles under 12 words, plain language, active voice, second person implied.
+- Include one relevant emoji per step.
+- Respond ONLY with valid JSON, no markdown fences, no preamble. Exact schema:
+[{"title": "string", "minutes": number, "emoji": "string"}]`;
+
+    const userContent = [];
+    if(ssPhotoData){
+      userContent.push({
+        type: 'image',
+        source: { type: 'base64', media_type: ssPhotoData.mediaType, data: ssPhotoData.base64 }
+      });
+    }
+    userContent.push({
+      type: 'text',
+      text: task ? `The task is: "${task}"` : 'Here is a photo of the task/mess. Break it down into tiny steps based on what you see.'
+    });
+
+    let steps = null;
+    let errorMsg = null;
+    try {
+      const response = await fetch('/api/claude', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: 'claude-sonnet-4-6',
+          max_tokens: 600,
+          system: systemInstruction,
+          messages: [{ role: 'user', content: userContent }]
+        })
+      });
+      const data = await response.json();
+      if(!response.ok){
+        throw new Error((data && data.error && data.error.message) || 'Request failed');
+      }
+      const text = (data.content || []).map(b => b.text || '').join('').trim();
+      const clean = text.replace(/```json/gi, '').replace(/```/g, '').trim();
+      const parsed = JSON.parse(clean);
+      if(!Array.isArray(parsed) || parsed.length === 0) throw new Error('empty');
+      steps = parsed.map(s => ({
+        title: String(s.title || 'Do a small piece'),
+        minutes: Math.max(1, Math.min(10, Number(s.minutes) || 3)),
+        emoji: s.emoji || '✅'
+      }));
+    } catch(e){
+      console.error('Stepstones demo error:', e);
+      errorMsg = e && e.message ? e.message : String(e);
+      steps = fallbackSteps(task);
+    } finally {
+      clearInterval(cycle);
+      $('ss-demo-loading').classList.remove('active');
+      btn.disabled = false;
+    }
+
+    $('ss-demo-task').textContent = task || '📷 Your photo';
+    renderStones(steps);
+    $('ss-demo-result').classList.add('active');
+    if(errorMsg){
+      errBox.innerHTML = `<div class="demo-error">⚠️ Couldn't reach Claude, showing generic starter steps. (${escapeHtml(errorMsg)})</div>`;
+    }
+  };
+
+  $('ss-demo-input').addEventListener('keydown', function(e){
+    if(e.key === 'Enter' && (e.metaKey || e.ctrlKey)){ ssRunDemo(); }
+  });
+
+  // ---- Sprout chat ----
+  const ssChatHistory = [];
+
+  function ssAppendChatBubble(role, text, id){
+    const wrap = $('ss-chat-messages');
+    const div = document.createElement('div');
+    div.className = 'sprout-bubble ' + role;
+    if(id) div.id = id;
+    div.textContent = text;
+    wrap.appendChild(div);
+    wrap.scrollTop = wrap.scrollHeight;
+    return div;
+  }
+
+  window.ssSendChat = async function(){
+    const input = $('ss-chat-input');
+    const text = input.value.trim();
+    const errBox = $('ss-chat-error');
+    errBox.innerHTML = '';
+    if(!text) return;
+
+    const sendBtn = $('ss-chat-send');
+    sendBtn.disabled = true;
+    input.value = '';
+    ssAppendChatBubble('user', text);
+    ssChatHistory.push({ role: 'user', content: text });
+
+    const typing = ssAppendChatBubble('bot typing', 'Sprout is typing...', 'ss-chat-typing');
+
+    const systemInstruction = `You are Sprout, the friendly AI companion built into the Stepstones app. You can chat about anything the person brings up — you're not limited to task coaching.
+Personality: warm, down-to-earth, a little playful, never preachy or clinical.
+Rules:
+- Keep replies concise and conversational — a few sentences unless the person clearly wants more detail.
+- If the person seems stuck on a task or overwhelmed, gently offer one tiny concrete next step, but don't force this onto unrelated conversations.
+- Be genuinely helpful and honest on any topic — general questions, advice, explanations, casual chat, all fair game.
+- Never diagnose or use clinical language.`;
+
+    try {
+      const response = await fetch('/api/claude', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: 'claude-sonnet-4-6',
+          max_tokens: 700,
+          system: systemInstruction,
+          messages: ssChatHistory
+        })
+      });
+      const data = await response.json();
+      if(!response.ok){
+        throw new Error((data && data.error && (data.error.message || data.error)) || 'Request failed');
+      }
+      const reply = (data.content || []).map(b => b.text || '').join('').trim() || "I'm here — tell me a bit more?";
+      typing.remove();
+      ssAppendChatBubble('bot', reply);
+      ssChatHistory.push({ role: 'assistant', content: reply });
+    } catch(e){
+      console.error('Sprout chat error:', e);
+      typing.remove();
+      const detail = e && e.message ? e.message : String(e);
+      ssAppendChatBubble('bot', "Stuck is a normal stop on this path — want to try naming just one tiny next step?");
+      errBox.innerHTML = `<div class="demo-error">⚠️ Couldn't reach Claude (${detail})</div>`;
+    } finally {
+      sendBtn.disabled = false;
+    }
+  };
+
+  const ssChatInput = $('ss-chat-input');
+  if(ssChatInput){
+    ssChatInput.addEventListener('keydown', function(e){
+      if(e.key === 'Enter'){ ssSendChat(); }
+    });
+  }
+})();
+</script>
+</body>
+</html>
